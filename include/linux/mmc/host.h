@@ -593,11 +593,12 @@ struct mmc_host {
 	} embedded_sdio_data;
 #endif
 
-	/*
-	 * Set to 1 to just stop the SDCLK to the card without
-	 * actually disabling the clock from it's source.
-	 */
-	bool			card_clock_off;
+
+#ifdef CONFIG_BLOCK
+	int			latency_hist_enabled;
+	struct io_latency_state io_lat_read;
+	struct io_latency_state io_lat_write;
+#endif
 
 #ifdef CONFIG_MMC_PERF_PROFILING
 	struct {
