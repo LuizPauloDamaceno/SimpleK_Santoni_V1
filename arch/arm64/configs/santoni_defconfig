@@ -563,6 +563,7 @@ CONFIG_MSM_BCL_SOMC_CTL=y
 #
 # CONFIG_CPUFREQ_DT is not set
 # CONFIG_CPU_BOOST is not set
+CONFIG_FINGERPRINT_BOOST=y
 
 #
 # ARM CPU frequency scaling drivers
