@@ -122,7 +122,7 @@ static ssize_t qns_param_show(struct class *dev,
 	case SOC:
 		return scnprintf(buf, PAGE_SIZE, "%d\n", battery_get_property(POWER_SUPPLY_PROP_CAPACITY).intval);
 	case BATTERY_TYPE:
-		return scnprintf(buf, PAGE_SIZE, "%s\n", battery_get_property(POWER_SUPPLY_PROP_BATTERY_TYPE).strval);
+		return scnprintf(buf, PAGE_SIZE, "%s\n", "qrd_msm8937_Coslight_4100mah");
 	case ALARM:
 		return scnprintf(buf, PAGE_SIZE, "%d\n", alarm_value);
 	case OPTIONS:
