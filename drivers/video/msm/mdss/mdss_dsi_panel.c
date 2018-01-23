@@ -1006,7 +1006,7 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 		mdss_dsi_panel_cmds_send(ctrl, &ctrl->off_cmds, CMD_REQ_COMMIT);
 
 	mdss_dsi_panel_off_hdmi(ctrl, pinfo);
-	mdss_dsi_panel_off_in_prog_notify(pdata, pinfo);
+	int mdss_dsi_panel_off_in_prog_notify(pdata, pinfo);
 	display_on = false;
 
 end:
