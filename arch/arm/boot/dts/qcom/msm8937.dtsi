@@ -2181,7 +2181,7 @@
 
 			qcom,speed-bin = <1>;
 
-			qcom,initial-pwrlevel = <3>;
+			qcom,initial-pwrlevel = <4>;
 
 			/* OVERCLOCK II */
 			qcom,gpu-pwrlevel@0 {
