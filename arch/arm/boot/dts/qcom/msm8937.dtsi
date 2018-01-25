@@ -2097,7 +2097,9 @@
 	qcom,gpu-speed-bin = <0x6018 0x80000000 31>;
 
 	//Special features:
+	qcom,strtstp-sleepwake; //prevent clock up when isn't needed.
 	qcom,tsens-name = "tsens_tz_sensor10"; //enable sensor name for GPU temperature monitoring 
+	qcom,gx-retention; //Enable regulator retention level for IDLE modes
 	qcom,soft-start-enable = <0x1>; //enable soft start to start without current peaks that can damage device
 	qcom,hpm-enable = <0x1>; //enable high power mode
 	qcom,boost-current-limit = <14>; //3200mA maximum
