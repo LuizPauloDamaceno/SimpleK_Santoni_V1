@@ -41,7 +41,7 @@
 	qcom,float-voltage-mv = <4400>;
 	//qcom,chg-led-sw-controls;
 	//qcom,chg-led-support;
-	qcom,thermal-mitigation = <2000 1500 1200 700 0>;
+	qcom,thermal-mitigation = <2500 2000 1500 800 0>;
 	status = "okay";
 };
 
