@@ -22,7 +22,7 @@
 	interrupt-parent = <&intc>;
 
 	chosen {
-		bootargs = "sched_enable_hmp=1";
+		bootargs = "boot_cpus=0,1,2,3,4,5,6,7 sched_enable_hmp=1";
 	};
 
 	firmware: firmware {
@@ -473,12 +473,12 @@
 		qcom,bcl-hotplug-list = <&CPU2 &CPU3>;
 		qcom,bcl-soc-hotplug-list = <&CPU0 &CPU1 &CPU2 &CPU3>;
 		qcom,ibat-monitor {
-			qcom,low-threshold-uamp = <3400000>;
-			qcom,high-threshold-uamp = <4200000>;
-			qcom,mitigation-freq-khz = <998400>;
+			qcom,low-threshold-uamp = <2700000>;
+			qcom,high-threshold-uamp = <3400000>;
+			qcom,mitigation-freq-khz = <1094400>;
 			qcom,vph-high-threshold-uv = <3500000>;
 			qcom,vph-low-threshold-uv = <3200000>;
-			qcom,soc-low-threshold = <10>;
+			qcom,soc-low-threshold = <5>;
 			qcom,thermal-handle = <&msm_thermal_freq>;
 		};
 	};
