@@ -63,9 +63,9 @@
 	rpm-regulator-smpa3 {
 		status = "okay";
 		pm8937_s3: regulator-s3 {
-			regulator-min-microvolt = <1275000>;
-			regulator-max-microvolt = <1275000>;
-			qcom,init-voltage = <1275000>;
+			regulator-min-microvolt = <1300000>;
+			regulator-max-microvolt = <1300000>;
+			qcom,init-voltage = <1300000>;
 			status = "okay";
 		};
 	};
@@ -83,9 +83,9 @@
 	rpm-regulator-ldoa2 {
 		status = "okay";
 		pm8937_l2: regulator-l2 {
-			regulator-min-microvolt = <1150000>;
-			regulator-max-microvolt = <1150000>;
-			qcom,init-voltage = <1150000>;
+			regulator-min-microvolt = <1200000>;
+			regulator-max-microvolt = <1200000>;
+			qcom,init-voltage = <1200000>;
 			status = "okay";
 		};
 	};
@@ -282,9 +282,9 @@
 	rpm-regulator-ldoa23 {
 		status = "okay";
 		pm8937_l23: regulator-l23 {
-			regulator-min-microvolt = <1150000>;
-			regulator-max-microvolt = <1150000>;
-			qcom,init-voltage = <1150000>;
+			regulator-min-microvolt = <1200000>;
+			regulator-max-microvolt = <1200000>;
+			qcom,init-voltage = <1200000>;
 			status = "okay";
 		};
 	};
