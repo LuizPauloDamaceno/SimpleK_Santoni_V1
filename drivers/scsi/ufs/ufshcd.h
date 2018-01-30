@@ -890,8 +890,7 @@ struct ufs_hba {
 	int scsi_block_reqs_cnt;
 
 	int			latency_hist_enabled;
-	struct io_latency_state io_lat_read;
-	struct io_latency_state io_lat_write;
+	struct io_latency_state io_lat_s;
 };
 
 /* Returns true if clocks can be gated. Otherwise false */
