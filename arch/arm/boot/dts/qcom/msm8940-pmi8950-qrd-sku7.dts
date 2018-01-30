@@ -38,20 +38,20 @@
 
 &pmi8950_charger {
 	qcom,battery-data = <&qrd_batterydata>;
-	qcom,float-voltage-mv = <4400>;
+	qcom,float-voltage-mv = <4425>;
 	//qcom,chg-led-sw-controls;
 	//qcom,chg-led-support;
-	qcom,thermal-mitigation = <2500 2000 1500 800 0>;
+	qcom,thermal-mitigation = <2500 2100 2000 1100 0>;
 	status = "okay";
 };
 
 &pmi8950_fg {
 	qcom,battery-data = <&qrd_batterydata>;
-	qcom,cold-bat-decidegc = <(0)>;
-	qcom,cool-bat-decidegc = <(150)>;
+	qcom,cold-bat-decidegc = <(120)>;
+	qcom,cool-bat-decidegc = <(220)>;
 	qcom,hot-bat-decidegc = <550>;
-	qcom,warm-bat-decidegc = <450>;
-	qcom,warm-bat-india-decidegc = <500>;
+	qcom,warm-bat-decidegc = <500>;
+	qcom,warm-bat-india-decidegc = <520>;
 	qcom,fg-iterm-ma = <0xb4>;
 	qcom,fg-chg-iterm-ma = <0x82>;
 	qcom,resume-soc-raw = <0xfd>;	
@@ -59,7 +59,12 @@
 	qcom,cl-max-decrement-deciperc = <0x1>;
 	qcom,fg-delta-soc = <0x1>;
 	qcom,bad-battery-detection-enable;
+	qcom,bcl-lm-threshold-ma = <1200>;
+	qcom,bcl-mh-threshold-ma = <2600>;
+	qcom,capacity-estimation-on;
+	qcom,esr-pulse-tuning-en;
 	qcom,hold-soc-while-full;
+	qcom,cycle-counter-en;
 	qcom,thermal-coefficients = [b7 85 b2 49 71 35];
 };
 
