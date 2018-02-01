@@ -583,7 +583,7 @@
 			/* OVERCLOCK II */
 			qcom,gpu-pwrlevel@0 {
 				reg = <0>;
-				qcom,gpu-freq = <605000000>;
+				qcom,gpu-freq = <610000000>;
 				qcom,bus-freq = <11>;
 				qcom,bus-min = <11>;
 				qcom,bus-max = <11>;
@@ -594,7 +594,7 @@
 				reg = <1>;
 				qcom,gpu-freq = <575000000>;
 				qcom,bus-freq = <11>;
-				qcom,bus-min = <10>;
+				qcom,bus-min = <11>;
 				qcom,bus-max = <11>;
 			};
 
@@ -604,7 +604,7 @@
 				qcom,gpu-freq = <475000000>;
 				qcom,bus-freq = <10>;
 				qcom,bus-min = <10>;
-				qcom,bus-max = <11>;
+				qcom,bus-max = <10>;
 			};
 
 			/* TURBO */

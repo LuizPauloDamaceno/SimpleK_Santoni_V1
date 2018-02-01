@@ -25,6 +25,11 @@
 	/* VDD_CX supply */
 	rpm-regulator-smpa2 {
 		status = "okay";
+		qcom,gx-retention; //Enable regulator retention level for IDLE modes
+		qcom,soft-start-enable = <0x1>; //enable soft start to start without current peaks that can damage device
+		qcom,hpm-enable = <0x1>; //enable high power mode
+		qcom,boost-current-limit = <14>; //3200mA maximum
+		qcom,ocp-enable = <1>; //enables over current protection
 		pm8937_s2_level: regulator-s2-level {
 			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm8937_s2_level";
@@ -93,6 +98,11 @@
 	/* VDD_MX supply */
 	rpm-regulator-ldoa3 {
 		status = "okay";
+		qcom,gx-retention; //Enable regulator retention level for IDLE modes
+		qcom,soft-start-enable = <0x1>; //enable soft start to start without current peaks that can damage device
+		qcom,hpm-enable = <0x1>; //enable high power mode
+		qcom,boost-current-limit = <14>; //3200mA maximum
+		qcom,ocp-enable = <1>; //enables over current protection
 		pm8937_l3_level_ao: regulator-l3-level-ao {
 			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm8937_l3_level_ao";
@@ -365,7 +375,7 @@
 
 		qcom,cpr-fuse-corners = <3>;
 		qcom,cpr-voltage-ceiling = <1150000 1200000 1275000>;
-		qcom,cpr-voltage-floor =   <1025000 1065000 1175000>; //Optimized undervolting (up to -75mV from stock) 
+		qcom,cpr-voltage-floor =   <1025000 1065000 1225000>; //Optimized undervolting (up to -25mV from stock) 
 		vdd-apc-supply = <&pm8937_s5>;
 
 		mem-acc-supply = <&mem_acc_vreg_corner>;
