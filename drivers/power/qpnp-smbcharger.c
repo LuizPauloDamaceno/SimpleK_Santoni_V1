@@ -7824,6 +7824,11 @@ static int smb_parse_dt(struct smbchg_chip *chip)
 	OF_PROP_READ(chip, chip->cfg_fastchg_current_ma,
 			"fastchg-current-ma", rc, 1);
 	if (chip->cfg_fastchg_current_ma == -EINVAL)
+		#ifdef CONFIG_FAST_CHARGE	
+		chip->cfg_fastchg_current_ma = = custom_current;
+		#else
+		chip->cfg_fastchg_current_ma = = DEFAULT_FCC_MA;
+		#endif
 		chip->cfg_fastchg_current_ma = DEFAULT_FCC_MA;
 	OF_PROP_READ(chip, chip->vfloat_mv, "float-voltage-mv", rc, 1);
 	OF_PROP_READ(chip, chip->safety_time, "charging-timeout-mins", rc, 1);
