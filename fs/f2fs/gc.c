@@ -144,113 +144,6 @@ void stop_gc_thread(struct f2fs_sb_info *sbi)
 	sbi->gc_thread = NULL;
 }
 
-static LIST_HEAD(f2fs_sbi_list);
-static DEFINE_MUTEX(f2fs_sbi_mutex);
-/* Trigger rapid GC when invalid block is higher than 3% */
-#define RAPID_GC_LIMIT_INVALID_BLOCK 3
-
-void start_all_gc_threads(void)
-{
-	struct f2fs_sb_info *sbi;
-	block_t invalid_blocks;
-
-	mutex_lock(&f2fs_sbi_mutex);
-	list_for_each_entry(sbi, &f2fs_sbi_list, list) {
-		invalid_blocks = sbi->user_block_count -
-					written_block_count(sbi) -
-					free_user_blocks(sbi);
-		if (invalid_blocks >
-		    ((long)((sbi->user_block_count - written_block_count(sbi)) *
-			RAPID_GC_LIMIT_INVALID_BLOCK) / 100)) {
-			start_gc_thread(sbi);
-			sbi->gc_thread->gc_wake = 1;
-			wake_up_interruptible_all(&sbi->gc_thread->gc_wait_queue_head);
-		} else {
-			pr_info("f2fs: invalid blocks lower than %d%%, skipping rapid GC (%u / (%u - %u))\n",
-				RAPID_GC_LIMIT_INVALID_BLOCK, invalid_blocks, sbi->user_block_count, written_block_count(sbi));
-		}
-	}
-	mutex_unlock(&f2fs_sbi_mutex);
-}
-
-void stop_all_gc_threads(void)
-{
-	struct f2fs_sb_info *sbi;
-
-	mutex_lock(&f2fs_sbi_mutex);
-	list_for_each_entry(sbi, &f2fs_sbi_list, list) {
-		stop_gc_thread(sbi);
-	}
-	mutex_unlock(&f2fs_sbi_mutex);
-}
-
-void f2fs_sbi_list_add(struct f2fs_sb_info *sbi)
-{
-	mutex_lock(&f2fs_sbi_mutex);
-	list_add_tail(&sbi->list, &f2fs_sbi_list);
-	mutex_unlock(&f2fs_sbi_mutex);
-}
-
-void f2fs_sbi_list_del(struct f2fs_sb_info *sbi)
-{
-	mutex_lock(&f2fs_sbi_mutex);
-	list_del(&sbi->list);
-	mutex_unlock(&f2fs_sbi_mutex);
-}
-
-static struct work_struct f2fs_gc_fb_worker;
-static void f2fs_gc_fb_work(struct work_struct *work)
-{
-	if (screen_on) {
-		stop_all_gc_threads();
-	} else {
-		/*
-		 * Start all GC threads exclusively from here
-		 * since the phone screen would turn on when
-		 * a charger is connected
-		 */
-		if (TRIGGER_SOFF)
-			start_all_gc_threads();
-	}
-}
-
-static int fb_notifier_callback(struct notifier_block *self,
-				unsigned long event, void *data)
-{
-	struct fb_event *evdata = data;
-	int *blank;
-
-	if ((event == FB_EVENT_BLANK) && evdata && evdata->data) {
-		blank = evdata->data;
-
-		switch (*blank) {
-		case FB_BLANK_POWERDOWN:
-			screen_on = false;
-			queue_work(system_power_efficient_wq, &f2fs_gc_fb_worker);
-			break;
-		case FB_BLANK_UNBLANK:
-			screen_on = true;
-			queue_work(system_power_efficient_wq, &f2fs_gc_fb_worker);
-			break;
-		}
-	}
-
-	return 0;
-}
-
-static struct notifier_block fb_notifier_block = {
-	.notifier_call = fb_notifier_callback,
-};
-
-static int __init f2fs_gc_register_fb(void)
-{
-	INIT_WORK(&f2fs_gc_fb_worker, f2fs_gc_fb_work);
-	fb_register_client(&fb_notifier_block);
-
-	return 0;
-}
-late_initcall(f2fs_gc_register_fb);
-
 static int select_gc_type(struct f2fs_gc_kthread *gc_th, int gc_type)
 {
 	int gc_mode = (gc_type == BG_GC) ? GC_CB : GC_GREEDY;
@@ -1169,3 +1062,4 @@ void build_gc_manager(struct f2fs_sb_info *sbi)
 		SIT_I(sbi)->last_victim[ALLOC_NEXT] =
 				GET_SEGNO(sbi, FDEV(0).end_blk) + 1;
 }
+

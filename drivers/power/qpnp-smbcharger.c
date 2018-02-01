@@ -39,7 +39,6 @@
 #include <linux/msm_bcl.h>
 #include <linux/ktime.h>
 #include <linux/pmic-voter.h>
-#include <linux/cclogic-core.h>
 
 #ifdef CONFIG_FAST_CHARGE
 #include <linux/Fast_Charge.h>
