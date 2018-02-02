@@ -12,7 +12,7 @@
 #include <linux/Fast_Charge.h>
 
 int FC_Switch = 1; 
-int custom_current = 2000;
+int custom_current = 2200;
 
 static ssize_t fc_switch_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
 {
@@ -40,7 +40,7 @@ static ssize_t custom_current_store(struct kobject *kobj, struct kobj_attribute 
 	if(FC_Switch == 1 && inputcurrent <= 3000 && inputcurrent >= 100)
 		custom_current = inputcurrent;
 	else
-		custom_current = 2000;
+		custom_current = 2200;
 	return count;
 }
 
