@@ -1304,14 +1304,7 @@ static const int usb_ilim_ma_table_8994[] = {
 	2300,
 	2400,
 	2500,
-	2600,
-	3000,
-	3050,
-	3100,
-	3200,
-	3300,
-	3400,
-	3500
+	3000
 };
 
 static const int usb_ilim_ma_table_8996[] = {
@@ -1346,13 +1339,7 @@ static const int usb_ilim_ma_table_8996[] = {
 	2700,
 	2800,
 	2900,
-	3000,
-	3050,
-	3100,
-	3200,
-	3300,
-	3400,
-	3500
+	3000
 };
 
 static int dc_ilim_ma_table_8994[] = {
@@ -1490,7 +1477,7 @@ static int smbchg_charging_en(struct smbchg_chip *chip, bool en)
 #define CURRENT_150_MA		150
 #define CURRENT_500_MA		500
 #define CURRENT_900_MA		900
-#define CURRENT_1700_MA		1700
+#define CURRENT_1500_MA		1500
 #define SUSPEND_CURRENT_MA	2
 #define ICL_OVERRIDE_BIT	BIT(2)
 static int smbchg_usb_suspend(struct smbchg_chip *chip, bool suspend)
@@ -1825,7 +1812,7 @@ static int smbchg_set_usb_current_max(struct smbchg_chip *chip,
 		}
 		break;
 	case POWER_SUPPLY_TYPE_USB_CDP:
-		if (current_ma < CURRENT_1700_MA) {
+		if (current_ma < CURRENT_1500_MA) {
 			/* use override for CDP */
 			rc = smbchg_masked_write(chip,
 					chip->usb_chgpth_base + CMD_IL,
@@ -1961,7 +1948,7 @@ static int smbchg_set_fastchg_current_raw(struct smbchg_chip *chip,
 #define USBIN_ACTIVE_PWR_SRC_BIT	BIT(1)
 #define DCIN_ACTIVE_PWR_SRC_BIT		BIT(0)
 #define PARALLEL_REENABLE_TIMER_MS	1000
-#define PARALLEL_CHG_THRESHOLD_CURRENT	2000
+#define PARALLEL_CHG_THRESHOLD_CURRENT	1800
 static bool smbchg_is_usbin_active_pwr_src(struct smbchg_chip *chip)
 {
 	int rc;
@@ -2463,7 +2450,7 @@ static bool smbchg_is_parallel_usb_ok(struct smbchg_chip *chip,
 	}
 
 	/*
-	 * Suspend the parallel charger if the charging current is < 2000 mA
+	 * Suspend the parallel charger if the charging current is < 1800 mA
 	 * and is not because of an ESR pulse.
 	 */
 	if ((!fcc_voter || strcmp(fcc_voter, ESR_PULSE_FCC_VOTER) != 0)
@@ -3313,19 +3300,19 @@ static int smbchg_float_voltage_comp_set(struct smbchg_chip *chip, int code)
 }
 
 #define VFLOAT_CFG_REG			0xF4
-#define MIN_FLOAT_MV			3540
+#define MIN_FLOAT_MV			3600
 #define MAX_FLOAT_MV			4500
 #define VFLOAT_MASK			SMB_MASK(5, 0)
 
-#define MID_RANGE_FLOAT_MV_MIN		3760
+#define MID_RANGE_FLOAT_MV_MIN		3600
 #define MID_RANGE_FLOAT_MIN_VAL		0x05
 #define MID_RANGE_FLOAT_STEP_MV		20
 
-#define HIGH_RANGE_FLOAT_MIN_MV		4360
+#define HIGH_RANGE_FLOAT_MIN_MV		4340
 #define HIGH_RANGE_FLOAT_MIN_VAL	0x2A
 #define HIGH_RANGE_FLOAT_STEP_MV	10
 
-#define VHIGH_RANGE_FLOAT_MIN_MV	4380
+#define VHIGH_RANGE_FLOAT_MIN_MV	4360
 #define VHIGH_RANGE_FLOAT_MIN_VAL	0x2C
 #define VHIGH_RANGE_FLOAT_STEP_MV	20
 static int smbchg_float_voltage_set(struct smbchg_chip *chip, int vfloat_mv)
@@ -6222,7 +6209,6 @@ static int smbchg_battery_set_property(struct power_supply *psy,
 		rc = vote(chip->dc_suspend_votable, USER_EN_VOTER,
 				!val->intval, 0);
 		chip->chg_enabled = val->intval;
-		power_supply_changed(chip->usb_psy);
 		schedule_work(&chip->usb_set_online_work);
 		break;
 	case POWER_SUPPLY_PROP_CAPACITY:
@@ -6356,7 +6342,7 @@ static int smbchg_battery_get_property(struct power_supply *psy,
 		val->intval = get_prop_batt_health(chip);
 		break;
 	case POWER_SUPPLY_PROP_TECHNOLOGY:
-		val->intval = POWER_SUPPLY_TECHNOLOGY_LIPO;
+		val->intval = POWER_SUPPLY_TECHNOLOGY_LION;
 		break;
 	case POWER_SUPPLY_PROP_FLASH_CURRENT_MAX:
 		val->intval = smbchg_calc_max_flash_current(chip);
@@ -7688,7 +7674,7 @@ static struct of_device_id smbchg_match_table[] = {
 };
 
 #define DC_MA_MIN 300
-#define DC_MA_MAX 3200
+#define DC_MA_MAX 2500
 #define OF_PROP_READ(chip, prop, dt_property, retval, optional)		\
 do {									\
 	if (retval)							\
@@ -7802,8 +7788,8 @@ err:
 	return rc;
 }
 
-#define DEFAULT_VLED_MAX_UV		3625000
-#define DEFAULT_FCC_MA			2600
+#define DEFAULT_VLED_MAX_UV		3500000
+#define DEFAULT_FCC_MA			2500
 static int smb_parse_dt(struct smbchg_chip *chip)
 {
 	int rc = 0, ocp_thresh = -EINVAL;
