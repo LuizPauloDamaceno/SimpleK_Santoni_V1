@@ -3809,7 +3809,7 @@ static int smbchg_icl_loop_disable_check(struct smbchg_chip *chip)
 
 	return rc;
 }
-
+extern char *fg_batt_type;
 #define UNKNOWN_BATT_TYPE	"Unknown Battery"
 #define LOADING_BATT_TYPE	"Loading Battery Data"
 static int smbchg_config_chg_battery_type(struct smbchg_chip *chip)
@@ -3841,7 +3841,7 @@ static int smbchg_config_chg_battery_type(struct smbchg_chip *chip)
 	}
 
 	profile_node = of_batterydata_get_best_profile(batt_node,
-							"bms", NULL);
+							"bms", fg_batt_type);
 	if (!profile_node) {
 		pr_err("couldn't find profile handle\n");
 		return -EINVAL;
@@ -6321,7 +6321,7 @@ static int smbchg_battery_get_property(struct power_supply *psy,
 		val->intval = get_prop_batt_health(chip);
 		break;
 	case POWER_SUPPLY_PROP_TECHNOLOGY:
-		val->intval = POWER_SUPPLY_TECHNOLOGY_LION;
+		val->intval = POWER_SUPPLY_TECHNOLOGY_LIPO;
 		break;
 	case POWER_SUPPLY_PROP_FLASH_CURRENT_MAX:
 		val->intval = smbchg_calc_max_flash_current(chip);
@@ -8919,3 +8919,4 @@ module_exit(smbchg_exit);
 MODULE_DESCRIPTION("QPNP SMB Charger");
 MODULE_LICENSE("GPL v2");
 MODULE_ALIAS("platform:qpnp-smbcharger");
+

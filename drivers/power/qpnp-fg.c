@@ -325,12 +325,12 @@ module_param_named(
 	first_est_dump, fg_est_dump, int, S_IRUSR | S_IWUSR
 );
 
-static char *fg_batt_type;
+char *fg_batt_type = "qrd_msm8937_Coslight_4100mah";
 module_param_named(
 	battery_type, fg_batt_type, charp, S_IRUSR | S_IWUSR
 );
 
-static int fg_sram_update_period_ms = 30000;
+static int fg_sram_update_period_ms = 15000;
 module_param_named(
 	sram_update_period_ms, fg_sram_update_period_ms, int, S_IRUSR | S_IWUSR
 );
@@ -3718,11 +3718,11 @@ static void fg_cap_learning_post_process(struct fg_chip *chip)
 		return;
 	}
 
-	max_inc_val = chip->learning_data.learned_cc_uah
+	max_inc_val = (int64_t)chip->learning_data.learned_cc_uah
 			* (1000 + chip->learning_data.max_increment);
 	do_div(max_inc_val, 1000);
 
-	min_dec_val = chip->learning_data.learned_cc_uah
+	min_dec_val = (int64_t)chip->learning_data.learned_cc_uah
 			* (1000 - chip->learning_data.max_decrement);
 	do_div(min_dec_val, 1000);
 
