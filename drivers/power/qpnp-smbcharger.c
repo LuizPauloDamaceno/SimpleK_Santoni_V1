@@ -1296,8 +1296,6 @@ static const int usb_ilim_ma_table_8994[] = {
 	2300,
 	2400,
 	2500,
-	2600,
-	2800,
 	3000
 };
 
@@ -7770,7 +7768,7 @@ err:
 }
 
 #define DEFAULT_VLED_MAX_UV		3500000
-#define DEFAULT_FCC_MA			2600
+#define DEFAULT_FCC_MA			2500
 static int smb_parse_dt(struct smbchg_chip *chip)
 {
 	int rc = 0, ocp_thresh = -EINVAL;
