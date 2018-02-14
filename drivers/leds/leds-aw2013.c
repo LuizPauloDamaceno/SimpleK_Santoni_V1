@@ -99,8 +99,8 @@ bool blink_frequency_adjust;
 #define Delay_time   0x00
 #define Period_Num  0x00
 #define Imax_R 0x88 //136mA +30mA 
-#define Imax_G 0x74 //136mA +30mA
-#define Imax_B 0x74 //136mA +30mA
+#define Imax_G 0x88 //136mA +30mA
+#define Imax_B 0x88 //136mA +30mA
 
 #define MAX_BRIGHTNESS_RED 255
 #define MAX_BRIGHTNESS_GREEN 255
