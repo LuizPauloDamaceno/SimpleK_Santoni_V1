@@ -851,7 +851,8 @@
 			<  5712 /*  748.8 MHz */ >,     /* NOM   */
 			<  6152 /*  806.4 MHz */ >,     /* NOM+  */
 			<  7031 /*  921.6 MHz */ >,     /* TURBO */
-			<  8015 /*  1021  MHz */ >;     /* TURBO+ */
+			<  8015 /*  1021  MHz */ >,     /* TURBO+ */
+			<  9887 /*  1296  MHz */ >;	/* TURBO++ */
 	};
 
 	qcom,cpu-bwmon {
@@ -879,7 +880,8 @@
 			<  5712 /*  748.8 MHz */ >,     /* NOM   */
 			<  6152 /*  806.4 MHz */ >,     /* NOM+  */
 			<  7031 /*  921.6 MHz */ >,     /* TURBO */
-			<  8015 /*  1021  MHz */ >;     /* TURBO+ */
+			<  8015 /*  1021  MHz */ >,     /* TURBO+ */
+			<  9887 /*  1296  MHz */ >;	/* TURBO++ */
 			
 	};
 
@@ -887,16 +889,16 @@
 		cpubw-cpufreq {
 		target-dev = <&cpubw>;
 		cpu-to-dev-map-0 =
-			<  998400  2929 >,      /* SVS   */
+			<  998400  1611 >,      /* SVS   */
 			< 1094400  5053 >,	/* NOM   */
 			< 1248000  5712 >,	/* NOM+  */
-			< 1344000  7031 >,
-			< 1497600  8015 >;	/* TURBO */
+			< 1344000  8015 >,
+			< 1497600  9887 >;	/* TURBO */
 		cpu-to-dev-map-4 =
-			<  806400  2929 >,	/* SVS  */
+			<  806400  1611 >,	/* SVS  */
 			<  902400  5053 >,	/* NOM   */
-			<  998400  6152 >,	/* NOM+  */
-			< 1209600  8015 >;	/* TURBO */
+			<  998400  7031 >,	/* NOM+  */
+			< 1209600  9887 >;	/* TURBO */
 		};
 
 		cci-cpufreq {
@@ -918,10 +920,10 @@
 		mincpubw-cpufreq {
 			target-dev = <&mincpubw>;
 			cpu-to-dev-map-0 =
-				< 1094400 2929 >,
+				< 1094400 1611 >,
 				< 1497600 4248 >;
 			cpu-to-dev-map-4 =
-				<  998400 2929 >,
+				<  998400 1611 >,
 				< 1209600 4248 >;
 		};
 	};
@@ -2187,9 +2189,9 @@
 			qcom,gpu-pwrlevel@0 {
 				reg = <0>;
 				qcom,gpu-freq = <600000000>;
-				qcom,bus-freq = <13>;
-				qcom,bus-min = <13>;
-				qcom,bus-max = <13>;
+				qcom,bus-freq = <12>;
+				qcom,bus-min = <12>;
+				qcom,bus-max = <12>;
 			};
 
 			/* OVERCLOCK I */

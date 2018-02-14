@@ -39,8 +39,7 @@
 			< 6152 >, /* 9. DDR:806.40 MHz BIMC: 403.20 MHz */
 			< 7031 >, /* 10. DDR:921.60 MHz BIMC: 460.80 MHz */
 			< 8015 >, /* 11. DDR:1050 MHz BIMC: 524 MHz */
-			< 9887 /*  12. 1296 MHz */ >,
-			< 11863 /*  13. 1555 MHz */ >;
+			< 9887 /*  12. 1296 MHz */ >;
 	};
 
 	msm_gpu: qcom,kgsl-3d0@1c00000 {
@@ -81,7 +80,7 @@
 		qcom,bus-control;
 		qcom,bus-width = <32>;
 		qcom,msm-bus,name = "grp3d";
-		qcom,msm-bus,num-cases = <14>;
+		qcom,msm-bus,num-cases = <13>;
 		qcom,msm-bus,num-paths = <1>;
 		qcom,msm-bus,vectors-KBps =
 				<26 512 0 0>,	    /*    off        */
@@ -96,8 +95,7 @@
 				<26 512 0 6451200>, /* 9. 806.40 MHz */
 				<26 512 0 7372800>, /* 10. 921.60 MHz */
 				<26 512 0 8405472>, /* 11. 1050 MHz */
-				<26 512 0 10368000>,    // 12 bus=1296 MHz
-				<26 512 0 12440000>;    // 13 bus=1555 MHz
+				<26 512 0 10368000>;    // 12 bus=1296 MHz
 
 		/* GDSC regulator names */
 		regulator-names = "vddcx", "vdd";

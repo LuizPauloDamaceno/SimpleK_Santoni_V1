@@ -312,7 +312,7 @@
 			qcom,auto-mode-enable = <1>;
 			qcom,soft-start-enable = <1>;
 			qcom,vs-soft-start-strength = <2>;
-			regulator-min-microvolt = <1025000>;
+			regulator-min-microvolt = <950000>;
 			regulator-max-microvolt = <1275000>;
 		};
 	};
@@ -375,7 +375,7 @@
 
 		qcom,cpr-fuse-corners = <3>;
 		qcom,cpr-voltage-ceiling = <1150000 1200000 1275000>;
-		qcom,cpr-voltage-floor =   <1025000 1065000 1225000>; //Optimized undervolting (up to -25mV from stock) 
+		qcom,cpr-voltage-floor =   <975000 1050000 1225000>; //Optimized undervolting (up to -25mV from stock) 
 		vdd-apc-supply = <&pm8937_s5>;
 
 		mem-acc-supply = <&mem_acc_vreg_corner>;
