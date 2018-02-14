@@ -91,16 +91,16 @@ bool blink_frequency_adjust;
 #define AW2013_LED2_T2		0x3F
 #define AW2013_ASR			0x77
 
-#define Bre_Imax          0x7C // 124mA +10mA
+#define Bre_Imax          0x90 // 144mA +30mA
 #define Rise_t  0x02
 #define Fall_t   0x02
 #define Hold_time   0x04
 #define Off_time      0x04
 #define Delay_time   0x00
 #define Period_Num  0x00
-#define Imax_R 0x74 //118mA +10mA 
-#define Imax_G 0x74 //118mA +10mA
-#define Imax_B 0x74 //118mA +10mA
+#define Imax_R 0x88 //136mA +30mA 
+#define Imax_G 0x74 //136mA +30mA
+#define Imax_B 0x74 //136mA +30mA
 
 #define MAX_BRIGHTNESS_RED 255
 #define MAX_BRIGHTNESS_GREEN 255
