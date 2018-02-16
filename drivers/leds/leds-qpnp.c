@@ -2765,7 +2765,6 @@ static int rgb_enable_leds(struct rgb_sync *rgb)
 	if (i == 0)
 		return 0;
 
-	rc = pwm_enable_synchronized(pwm_dev, i);
 	if (rc) {
 		dev_err(&rgb->spmi_dev->dev, "Unable to enable pwms\n");
 		return rc;
