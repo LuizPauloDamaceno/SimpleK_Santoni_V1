@@ -375,7 +375,7 @@
 
 		qcom,cpr-fuse-corners = <3>;
 		qcom,cpr-voltage-ceiling = <1150000 1200000 1275000>;
-		qcom,cpr-voltage-floor =   <975000 1050000 1225000>; //Optimized undervolting (up to -25mV from stock) 
+		qcom,cpr-voltage-floor =   <1000000 1050000 1215000>; //Optimized undervolting (up to -35mV from stock) 
 		vdd-apc-supply = <&pm8937_s5>;
 
 		mem-acc-supply = <&mem_acc_vreg_corner>;
@@ -408,7 +408,7 @@
 					<70 54 7 0>;
 		qcom,cpr-fuse-quot-offset-scale = <5 5 5>;
 		qcom,cpr-init-voltage-step = <10000>;
-		qcom,cpr-corner-map = <1 1 1 2 2 2 3 3 3 3 3>;
+		qcom,cpr-corner-map = <1 1 1 1 2 2 3 3 3 3 3>;
 		qcom,cpr-corner-frequency-map =
 				<1 345600000>,
 				<2 422400000>,
