@@ -16,8 +16,8 @@
 		status = "okay";
 		pm8937_s1: regulator-s1 {
 			regulator-min-microvolt = <1000000>;
-			regulator-max-microvolt = <1225000>;
-			qcom,init-voltage = <1000000>;
+			regulator-max-microvolt = <1250000>;
+			qcom,init-voltage = <1100000>;
 			status = "okay";
 		};
 	};
@@ -274,7 +274,7 @@
 		pm8937_l19: regulator-l19 {
 			regulator-min-microvolt = <1150000>;
 			regulator-max-microvolt = <1325000>;
-			qcom,init-voltage = <1150000>;
+			qcom,init-voltage = <1200000>;
 			status = "okay";
 		};
 	};
@@ -312,8 +312,8 @@
 			qcom,auto-mode-enable = <1>;
 			qcom,soft-start-enable = <1>;
 			qcom,vs-soft-start-strength = <2>;
-			regulator-min-microvolt = <950000>;
-			regulator-max-microvolt = <1275000>;
+			regulator-min-microvolt = <1000000>;
+			regulator-max-microvolt = <1300000>;
 		};
 	};
 };
@@ -374,8 +374,8 @@
 		regulator-max-microvolt = <11>;
 
 		qcom,cpr-fuse-corners = <3>;
-		qcom,cpr-voltage-ceiling = <1150000 1200000 1275000>;
-		qcom,cpr-voltage-floor =   <1000000 1050000 1215000>; //Optimized undervolting (up to -35mV from stock) 
+		qcom,cpr-voltage-ceiling = <1150000 1200000 1300000>;
+		qcom,cpr-voltage-floor =   <1050000 1075000 1275000>; //Optimized undervolting (up to -35mV from stock) 
 		vdd-apc-supply = <&pm8937_s5>;
 
 		mem-acc-supply = <&mem_acc_vreg_corner>;

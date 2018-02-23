@@ -37,10 +37,10 @@
 #define ASMP_TAG			"AutoSMP:"
 #define ASMP_ENABLED			false
 #define DEFAULT_BOOST_LOCK_DUR		800 * 1000L
-#define DEFAULT_NR_CPUS_BOOSTED		2
-#define DEFAULT_UPDATE_RATE		10
+#define DEFAULT_NR_CPUS_BOOSTED		4
+#define DEFAULT_UPDATE_RATE		75
 #define MIN_INPUT_INTERVAL		150 * 1000L
-#define DEFAULT_MIN_BOOST_FREQ		1344000
+#define DEFAULT_MIN_BOOST_FREQ		1248000
 
 #if DEBUG
 struct asmp_cpudata_t {
@@ -72,8 +72,8 @@ static struct asmp_param_struct {
 	.delay = DEFAULT_UPDATE_RATE,
 	.max_cpus = NR_CPUS,
 	.min_cpus = 2,
-	.cpufreq_up = 90,
-	.cpufreq_down = 60,
+	.cpufreq_up = 60,
+	.cpufreq_down = 35,
 	.cycle_up = 1,
 	.cycle_down = 1,
 	.min_boost_freq = DEFAULT_MIN_BOOST_FREQ,
