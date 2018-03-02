@@ -77,5 +77,7 @@ dsi_ili9881c_ebbgDJN_720p_video: qcom,mdss_dsi_ili9881c_ebbgDJN_720p_video {
 		qcom,mdss-dsi-panel-status-value = <0x9c 0x0>;
 		qcom,mdss-dsi-panel-status-read-length = <0x1 0x1>;
 		qcom,panel-supply-entries = <0x183>;
+		qcom,suspend-ulps-enabled;
+ 		qcom,ulps-enabled;
 	};
 };
