@@ -6,6 +6,7 @@
  *  Copyright © 2003  Ian Molton <spyro@f2s.com>
  *
  *  Modified: 2004, Oct     Szabolcs Gyurko
+ *  Copyright (C) 2018 XiaoMi, Inc.
  *
  *  You may use this code as per GPL version 2
  */
@@ -269,6 +270,25 @@ int power_supply_set_low_power_state(struct power_supply *psy, int value)
 	return -ENXIO;
 }
 EXPORT_SYMBOL(power_supply_set_low_power_state);
+int power_supply_get_battery_charge_state(struct power_supply *psy)
+{
+	union power_supply_propval ret = {0,};
+
+	if (!psy) {
+		pr_err("power supply is NULL\n");
+	}
+
+	if (psy->get_property) {
+		psy->get_property(psy, POWER_SUPPLY_PROP_PRESENT,  &ret);
+	}
+
+	pr_debug("online:%d\n", ret.intval);
+
+	return ret.intval;
+
+}
+
+EXPORT_SYMBOL(power_supply_get_battery_charge_state);
 
 /**
  * power_supply_set_dp_dm -
@@ -544,9 +564,7 @@ EXPORT_SYMBOL_GPL(power_supply_is_system_supplied);
 
 int power_supply_set_battery_charged(struct power_supply *psy)
 {
-	if (atomic_read(&psy->use_cnt) >= 0 &&
-			psy->type == POWER_SUPPLY_TYPE_BATTERY &&
-			psy->set_charged) {
+	if (psy->type == POWER_SUPPLY_TYPE_BATTERY && psy->set_charged) {
 		psy->set_charged(psy);
 		return 0;
 	}
@@ -597,47 +615,6 @@ struct power_supply *power_supply_get_by_phandle(struct device_node *np,
 }
 EXPORT_SYMBOL_GPL(power_supply_get_by_phandle);
 #endif /* CONFIG_OF */
-
-int power_supply_get_property(struct power_supply *psy,
-				enum power_supply_property psp,
-				union power_supply_propval *val)
-{
-	if (atomic_read(&psy->use_cnt) <= 0)
-		return -ENODEV;
-
-	return psy->get_property(psy, psp, val);
-}
-EXPORT_SYMBOL_GPL(power_supply_get_property);
-
-int power_supply_set_property(struct power_supply *psy,
-				enum power_supply_property psp,
-				const union power_supply_propval *val)
-{
-	if (atomic_read(&psy->use_cnt) <= 0 || !psy->set_property)
-		return -ENODEV;
-
-	return psy->set_property(psy, psp, val);
-}
-EXPORT_SYMBOL_GPL(power_supply_set_property);
-
-int power_supply_property_is_writeable(struct power_supply *psy,
-				enum power_supply_property psp)
-{
-	if (atomic_read(&psy->use_cnt) <= 0 || !psy->property_is_writeable)
-		return -ENODEV;
-
-	return psy->property_is_writeable(psy, psp);
-}
-EXPORT_SYMBOL_GPL(power_supply_property_is_writeable);
-
-void power_supply_external_power_changed(struct power_supply *psy)
-{
-	if (atomic_read(&psy->use_cnt) <= 0 || !psy->external_power_changed)
-		return;
-
-	psy->external_power_changed(psy);
-}
-EXPORT_SYMBOL_GPL(power_supply_external_power_changed);
 
 int power_supply_powers(struct power_supply *psy, struct device *dev)
 {
@@ -808,11 +785,66 @@ static void psy_unregister_cooler(struct power_supply *psy)
 }
 #endif
 
+int bq_runin_test = 0;
+static ssize_t show_StopCharging_Test(struct device *dev, struct device_attribute *attr, char *buf)
+{
+	bool charging_enable = false;
+	struct power_supply		*batt_psy = NULL;
+	int rc;
+
+	bq_runin_test = 1;
+	batt_psy = power_supply_get_by_name("battery");
+	if (batt_psy) {
+		rc = power_supply_set_charging_enabled(batt_psy, 0);
+		if (rc)
+			pr_err("disable charging failed\n");
+		pr_err("show_StopCharging_Test : %x success\n", charging_enable);
+	} else
+		pr_err("get battery power supply Error!!\n");
+
+	return sprintf(buf, "chr=%d\n", charging_enable);
+}
+
+static ssize_t store_StopCharging_Test(struct device *dev, struct device_attribute *attr, const char *buf, size_t size)
+{
+	return -EPERM;
+}
+static DEVICE_ATTR(StopCharging_Test, 0664, show_StopCharging_Test, store_StopCharging_Test);
+
+static ssize_t show_StartCharging_Test(struct device *dev, struct device_attribute *attr, char *buf)
+{
+	bool charging_enable = true;
+	struct power_supply		*batt_psy = NULL;
+	int rc;
+
+	bq_runin_test = 2;
+	batt_psy = power_supply_get_by_name("battery");
+	if (batt_psy) {
+		rc = power_supply_set_charging_enabled(batt_psy, 1);
+		if (rc)
+			pr_err("enable charging failed\n");
+		pr_err("show_StartCharging_Test : %x success\n", charging_enable);
+	} else
+		pr_err("get battery power supply Error!!\n");
+
+	return sprintf(buf, "chr=%d\n", charging_enable);
+}
+
+static ssize_t store_StartCharging_Test(struct device *dev, struct device_attribute *attr, const char *buf, size_t size)
+{
+	return -EPERM;
+}
+static DEVICE_ATTR(StartCharging_Test, 0664, show_StartCharging_Test, store_StartCharging_Test);
+
+
+
+
 static int __power_supply_register(struct device *parent,
 				   struct power_supply *psy, bool ws)
 {
 	struct device *dev;
 	int rc;
+	int ret_device_file = 0;
 
 	dev = kzalloc(sizeof(*dev), GFP_KERNEL);
 	if (!dev)
@@ -826,7 +858,6 @@ static int __power_supply_register(struct device *parent,
 	dev->release = power_supply_dev_release;
 	dev_set_drvdata(dev, psy);
 	psy->dev = dev;
-	atomic_inc(&psy->use_cnt);
 
 	rc = dev_set_name(dev, "%s", psy->name);
 	if (rc)
@@ -863,8 +894,12 @@ static int __power_supply_register(struct device *parent,
 
 	power_supply_changed(psy);
 
+	if (strcmp(psy->name, "battery") == 0) {
+		pr_err("battery powe supply creat attr file!!\n");
+		ret_device_file = device_create_file(dev, &dev_attr_StopCharging_Test);
+		ret_device_file = device_create_file(dev, &dev_attr_StartCharging_Test);
+	}
 	return 0;
-
 create_triggers_failed:
 	psy_unregister_cooler(psy);
 register_cooler_failed:
@@ -893,7 +928,6 @@ EXPORT_SYMBOL_GPL(power_supply_register_no_ws);
 
 void power_supply_unregister(struct power_supply *psy)
 {
-	WARN_ON(atomic_dec_return(&psy->use_cnt));
 	cancel_work_sync(&psy->changed_work);
 	sysfs_remove_link(&psy->dev->kobj, "powers");
 	power_supply_remove_triggers(psy);
@@ -903,12 +937,6 @@ void power_supply_unregister(struct power_supply *psy)
 	device_unregister(psy->dev);
 }
 EXPORT_SYMBOL_GPL(power_supply_unregister);
-
-void *power_supply_get_drvdata(struct power_supply *psy)
-{
-	return psy->drv_data;
-}
-EXPORT_SYMBOL_GPL(power_supply_get_drvdata);
 
 static int __init power_supply_class_init(void)
 {
@@ -936,3 +964,4 @@ MODULE_AUTHOR("Ian Molton <spyro@f2s.com>, "
 	      "Szabolcs Gyurko, "
 	      "Anton Vorontsov <cbou@mail.ru>");
 MODULE_LICENSE("GPL");
+
