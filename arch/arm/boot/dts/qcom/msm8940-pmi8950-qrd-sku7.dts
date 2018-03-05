@@ -40,11 +40,14 @@
 	qcom,battery-data = <&qrd_batterydata>;
 	qcom,float-voltage-mv = <4450>;
 	qcom,autoadjust-vfloat;
-	qcom,fastchg-current-ma = <2500>;
+	qcom,fastchg-current-ma = <2400>;
 	qcom,fastchg-current-comp = <250>;
 	qcom,charging-timeout-mins = <192>;
 	qcom,precharging-timeout-mins = <24>;
-	qcom,thermal-mitigation = <2500 2200 1800 1100 0>;
+	qcom,force-aicl-rerun;
+	qcom,aicl-rerun-period-s = <180>;
+	qcom,rparasitic-uohm = <100000>;
+	qcom,thermal-mitigation = <2400 1800 1500 1000 0>;
 	status = "okay";
 };
 
@@ -52,7 +55,7 @@
 	qcom,battery-data = <&qrd_batterydata>;
 	qcom,cold-bat-decidegc = <(120)>;
 	qcom,cool-bat-decidegc = <(220)>;
-	qcom,hot-bat-decidegc = <550>;
+	qcom,hot-bat-decidegc = <520>;
 	qcom,warm-bat-decidegc = <500>;
 	qcom,warm-bat-india-decidegc = <520>;
 	qcom,fg-iterm-ma = <0xb4>;

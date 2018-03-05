@@ -56,8 +56,6 @@ enum
 	FCC,
 	DESIGN,
 	SOC,
-	BATTERY_TYPE,
-	CHARGE_CURRENT,
 	ALARM,
 	OPTIONS,
 };
@@ -70,8 +68,6 @@ static struct class_attribute qns_attrs[] = {
 	__ATTR(fcc, S_IRUGO, qns_param_show, NULL),
 	__ATTR(design, S_IRUGO, qns_param_show, NULL),
 	__ATTR(soc, S_IRUGO, qns_param_show, NULL),
-	__ATTR(battery_type, S_IRUGO, qns_param_show, NULL),
-	__ATTR(charge_current, S_IWUSR, NULL, qns_param_store),
 	__ATTR(alarm, S_IWUSR | S_IRUGO, qns_param_show, qns_param_store),
 	__ATTR(options, S_IWUSR | S_IRUGO, qns_param_show, qns_param_store),
 	__ATTR_NULL,
@@ -121,8 +117,6 @@ static ssize_t qns_param_show(struct class *dev,
 		return scnprintf(buf, PAGE_SIZE, "%d\n", battery_get_property(POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN).intval / 1000);
 	case SOC:
 		return scnprintf(buf, PAGE_SIZE, "%d\n", battery_get_property(POWER_SUPPLY_PROP_CAPACITY).intval);
-	case BATTERY_TYPE:
-		return scnprintf(buf, PAGE_SIZE, "%s\n", "qrd_msm8937_Coslight_4100mah");
 	case ALARM:
 		return scnprintf(buf, PAGE_SIZE, "%d\n", alarm_value);
 	case OPTIONS:
@@ -169,30 +163,6 @@ static ssize_t qns_param_store(struct class *dev,
 
 	switch(off)
 	{
-	case CHARGE_CURRENT:
-		ret = kstrtoint(buf, 10, &val);
-		if (!ret && (val > 0)) {
-			static int prev_ibat_for_deblog = -1;
-			union power_supply_propval propVal = {val * 1000,};
-
-			if (val != prev_ibat_for_deblog) {
-				pr_info("QNS: new charge current:%d mA\n", val);
-				if(battery_psy->set_property(battery_psy,
-						POWER_SUPPLY_PROP_CONSTANT_CHARGE_CURRENT_MAX,
-						&propVal) != 0) {
-					pr_info("QNS: ERROR: unable to set charging current! Does \"battery\" have "
-							"POWER_SUPPLY_PROP_CONSTANT_CHARGE_CURRENT_MAX property?\n");
-					return count;
-				}
-				prev_ibat_for_deblog = val;
-			}
-		
-			return count;
-		}
-		else
-			return -EINVAL;
-		break;
-
 	case ALARM:
 		ret = kstrtoint(buf, 10, &val);
 
