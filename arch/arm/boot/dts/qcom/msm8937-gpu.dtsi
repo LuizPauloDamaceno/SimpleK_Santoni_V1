@@ -104,8 +104,8 @@
 		vdd-supply = <&gdsc_oxili_gx>;
 
 		/* CPU latency parameter */
-		qcom,pm-qos-active-latency = <432>; //HZ=300
-		qcom,pm-qos-wakeup-latency = <432>; //HZ=300
+		qcom,pm-qos-active-latency = <1440>; //HZ=1000
+		qcom,pm-qos-wakeup-latency = <1440>; //HZ=1000
 
 		/*  Quirks  */
 		qcom,gpu-quirk-two-pass-use-wfi;
