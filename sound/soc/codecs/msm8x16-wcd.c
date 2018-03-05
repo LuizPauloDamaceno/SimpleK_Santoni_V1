@@ -98,17 +98,17 @@ enum {
 #define SPK_PMD 2
 #define SPK_PMU 3
 
-#define MICBIAS_DEFAULT_VAL 1800000
+#define MICBIAS_DEFAULT_VAL 2400000
 #define MICBIAS_MIN_VAL 1600000
 #define MICBIAS_STEP_SIZE 50000
 
-#define DEFAULT_BOOST_VOLTAGE 5400
-#define MIN_BOOST_VOLTAGE 4400
-#define MAX_BOOST_VOLTAGE 6000
+#define DEFAULT_BOOST_VOLTAGE 5600
+#define MIN_BOOST_VOLTAGE 4800
+#define MAX_BOOST_VOLTAGE 6200
 #define BOOST_VOLTAGE_STEP 50
 
-#define MSM8X16_WCD_MBHC_BTN_COARSE_ADJ  60 /* in mV */
-#define MSM8X16_WCD_MBHC_BTN_FINE_ADJ 10 /* in mV */
+#define MSM8X16_WCD_MBHC_BTN_COARSE_ADJ  40 /* in mV */
+#define MSM8X16_WCD_MBHC_BTN_FINE_ADJ 5 /* in mV */
 
 #define VOLTAGE_CONVERTER(value, min_value, step_size)\
 	((value - min_value)/step_size)
@@ -4558,7 +4558,9 @@ static const struct snd_soc_dapm_route audio_map[] = {
 	{"IIR1", NULL, "IIR1 INP1 MUX"},
 	{"IIR1 INP1 MUX", "DEC1", "DEC1 MUX"},
 	{"IIR1 INP1 MUX", "DEC2", "DEC2 MUX"},
+	{"IIR1 INP1 MUX", "RX1", "I2S RX1"},
 	{"IIR2", NULL, "IIR2 INP1 MUX"},
+	{"IIR2 INP1 MUX", "RX2", "I2S RX2"},
 	{"IIR2 INP1 MUX", "DEC1", "DEC1 MUX"},
 	{"IIR2 INP1 MUX", "DEC2", "DEC2 MUX"},
 	{"MIC BIAS Internal1", NULL, "INT_LDO_H"},
