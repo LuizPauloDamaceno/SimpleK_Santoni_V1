@@ -552,6 +552,7 @@
 
 /* GPU overrides */
 &msm_gpu {
+	qcom,popp-enable; //enable POPP feature
 	//We delete these 2, they're not in our full dts.
 	/delete-property/qcom,gpu-quirk-lmloadkill-disable;
 	qcom,restrict-pwrlevel = <1>;	

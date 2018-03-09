@@ -129,6 +129,8 @@
 		/* Context aware jump target power level */
 		qcom,ca-target-pwrlevel = <0>;
 
+		qcom,popp-enable; //enable POPP feature
+
 
 		/* Power levels */
 		qcom,gpu-pwrlevels {
