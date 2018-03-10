@@ -201,7 +201,7 @@
 			compatible = "qcom,qpnp-smbcharger";
 			#address-cells = <1>;
 			#size-cells = <1>;
-
+			qcom,max-pulse-allowed = <12>;
 			qcom,iterm-ma = <100>;
 			qcom,float-voltage-mv = <4200>;
 			qcom,resume-delta-mv = <200>;
@@ -215,7 +215,7 @@
 			qcom,pmic-revid = <&pmi8950_revid>;
 			qcom,force-aicl-rerun;
 			qcom,aicl-rerun-period-s = <180>;
-			//qcom,autoadjust-vfloat;
+			
 			qcom,vchg_sns-vadc = <0xf8>;
 			qcom,vchg-adc-channel-id = <0x3>;
 

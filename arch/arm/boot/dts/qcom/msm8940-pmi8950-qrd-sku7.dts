@@ -40,6 +40,7 @@
 	qcom,battery-data = <&qrd_batterydata>;
 	qcom,float-voltage-mv = <4450>;
 	qcom,autoadjust-vfloat;
+	qcom,max-pulse-allowed = <12>;
 	qcom,fastchg-current-ma = <2400>;
 	qcom,fastchg-current-comp = <250>;
 	qcom,charging-timeout-mins = <192>;
