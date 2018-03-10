@@ -445,13 +445,13 @@ module_param_named(
 	parallel_en, smbchg_parallel_en, int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_main_chg_fcc_percent = 70;
+static int smbchg_main_chg_fcc_percent = 80;
 module_param_named(
 	main_chg_fcc_percent, smbchg_main_chg_fcc_percent,
 	int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_main_chg_icl_percent = 40;
+static int smbchg_main_chg_icl_percent = 20;
 module_param_named(
 	main_chg_icl_percent, smbchg_main_chg_icl_percent,
 	int, S_IRUSR | S_IWUSR
@@ -463,13 +463,13 @@ module_param_named(
 	int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_default_hvdcp3_icl_ma = 2900;
+static int smbchg_default_hvdcp3_icl_ma = 3000;
 module_param_named(
 	default_hvdcp3_icl_ma, smbchg_default_hvdcp3_icl_ma,
 	int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_default_dcp_icl_ma = 1700;
+static int smbchg_default_dcp_icl_ma = 1800;
 module_param_named(
 	default_dcp_icl_ma, smbchg_default_dcp_icl_ma,
 	int, S_IRUSR | S_IWUSR
