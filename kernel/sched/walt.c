@@ -75,6 +75,14 @@ static cpumask_t mpc_mask = CPU_MASK_ALL;
 __read_mostly unsigned int walt_ravg_window = 20000000;
 
 /* Min window size (in ns) = 10ms */
+
+#ifdef CONFIG_HZ_10000
+/*
+ * Tick interval becomes to 6666666 due to
+ * rounding error when HZ=1000.
+ */
+#define MIN_SCHED_RAVG_WINDOW (6666666 * 6)
+#else
 #ifdef CONFIG_HZ_300
 /*
  * Tick interval becomes to 3333333 due to
