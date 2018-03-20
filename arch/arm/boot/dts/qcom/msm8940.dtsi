@@ -585,18 +585,18 @@
 			qcom,gpu-pwrlevel@0 {
 				reg = <0>;
 				qcom,gpu-freq = <600000000>;
-				qcom,bus-freq = <12>;
-				qcom,bus-min = <12>;
-				qcom,bus-max = <12>;
+				qcom,bus-freq = <11>;
+				qcom,bus-min = <11>;
+				qcom,bus-max = <11>;
 			};
 
 			/* OVERCLOCK I */
 			qcom,gpu-pwrlevel@1 {
 				reg = <1>;
 				qcom,gpu-freq = <575000000>;
-				qcom,bus-freq = <12>;
-				qcom,bus-min = <12>;
-				qcom,bus-max = <12>;
+				qcom,bus-freq = <11>;
+				qcom,bus-min = <11>;
+				qcom,bus-max = <11>;
 			};
 
 			/* SUPER TURBO */
@@ -604,7 +604,7 @@
 				reg = <2>;
 				qcom,gpu-freq = <475000000>;
 				qcom,bus-freq = <11>;
-				qcom,bus-min = <10>;
+				qcom,bus-min = <11>;
 				qcom,bus-max = <11>;
 			};
 
@@ -613,7 +613,7 @@
 				reg = <3>;
 				qcom,gpu-freq = <450000000>;
 				qcom,bus-freq = <10>;
-				qcom,bus-min = <9>;
+				qcom,bus-min = <10>;
 				qcom,bus-max = <10>;
 			};
 

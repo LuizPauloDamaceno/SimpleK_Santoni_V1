@@ -425,27 +425,25 @@
 	qcom,msm-thermal {
 		compatible = "qcom,msm-thermal";
 		qcom,sensor-id = <5>;
-		qcom,poll-ms = <250>;
+		qcom,poll-ms = <100>;
 		qcom,limit-temp = <60>;
 		qcom,temp-hysteresis = <10>;
 		qcom,freq-step = <2>;
-		qcom,core-limit-temp = <80>;
+		qcom,core-limit-temp = <75>;
 		qcom,core-temp-hysteresis = <10>;
-		qcom,hotplug-temp = <105>;
+		qcom,hotplug-temp = <80>;
 		qcom,hotplug-temp-hysteresis = <15>;
-		qcom,freq-mitigation-temp = <105>;
+		qcom,freq-mitigation-temp = <85>;
 		qcom,freq-mitigation-temp-hysteresis = <15>;
 		qcom,freq-mitigation-value = <400000>;
 		qcom,online-hotplug-core;
 		qcom,synchronous-cluster-id = <0 1>;
 		qcom,synchronous-cluster-map = <1 4 &CPU0 &CPU1 &CPU2 &CPU3>,
 						<0 4 &CPU4 &CPU5 &CPU6 &CPU7>;
-		qcom,disable-cx-phase-ctrl;
-		qcom,disable-gfx-phase-ctrl;
 		qcom,disable-vdd-mx;
 		qcom,disable-psm;
 		qcom,disable-ocr;
-		qcom,vdd-restriction-temp = <5>;
+		qcom,vdd-restriction-temp = <52>;
 		qcom,vdd-restriction-temp-hysteresis = <10>;
 		vdd-dig-supply = <&pm8937_s2_floor_level>;
 
@@ -851,8 +849,7 @@
 			<  5712 /*  748.8 MHz */ >,     /* NOM   */
 			<  6152 /*  806.4 MHz */ >,     /* NOM+  */
 			<  7031 /*  921.6 MHz */ >,     /* TURBO */
-			<  8015 /*  1021  MHz */ >,     /* TURBO+ */
-			<  9887 /*  1296  MHz */ >;	/* TURBO++ */
+			<  8015 /*  1021  MHz */ >;     /* TURBO+ */
 	};
 
 	qcom,cpu-bwmon {
@@ -880,8 +877,7 @@
 			<  5712 /*  748.8 MHz */ >,     /* NOM   */
 			<  6152 /*  806.4 MHz */ >,     /* NOM+  */
 			<  7031 /*  921.6 MHz */ >,     /* TURBO */
-			<  8015 /*  1021  MHz */ >,     /* TURBO+ */
-			<  9887 /*  1296  MHz */ >;	/* TURBO++ */
+			<  8015 /*  1021  MHz */ >;     /* TURBO+ */
 			
 	};
 
@@ -893,12 +889,12 @@
 			< 1094400  5053 >,	/* NOM   */
 			< 1248000  5712 >,	/* NOM+  */
 			< 1344000  8015 >,
-			< 1497600  9887 >;	/* TURBO */
+			< 1497600  8015 >;	/* TURBO */
 		cpu-to-dev-map-4 =
 			<  806400  1611 >,	/* SVS  */
 			<  902400  5053 >,	/* NOM   */
 			<  998400  7031 >,	/* NOM+  */
-			< 1209600  9887 >;	/* TURBO */
+			< 1209600  8015 >;	/* TURBO */
 		};
 
 		cci-cpufreq {

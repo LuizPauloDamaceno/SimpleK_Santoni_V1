@@ -38,15 +38,16 @@
 
 &pmi8950_charger {
 	qcom,battery-data = <&qrd_batterydata>;
-	qcom,float-voltage-mv = <4450>;
+	qcom,float-voltage-mv = <4400>;
+	qcom,float-voltage-comp = <8>;
 	qcom,autoadjust-vfloat;
-	qcom,max-pulse-allowed = <12>;
+	qcom,max-pulse-allowed = <10>;
 	qcom,fastchg-current-ma = <3000>;
 	qcom,fastchg-current-comp = <250>;
 	qcom,charging-timeout-mins = <192>;
 	qcom,precharging-timeout-mins = <24>;
 	qcom,force-aicl-rerun;
-	qcom,aicl-rerun-period-s = <180>;
+	qcom,aicl-rerun-period-s = <45>;
 	qcom,rparasitic-uohm = <100000>;
 	qcom,thermal-mitigation = <3000 2200 1600 1000 0>;
 	status = "okay";
@@ -71,6 +72,8 @@
 	qcom,esr-pulse-tuning-en;
 	qcom,hold-soc-while-full;
 	qcom,cycle-counter-en;
+	qcom,capacity-learning-on;
+	qcom,capacity-learning-feedback;
 	qcom,thermal-coefficients = [b7 85 b2 49 71 35];
 };
 
