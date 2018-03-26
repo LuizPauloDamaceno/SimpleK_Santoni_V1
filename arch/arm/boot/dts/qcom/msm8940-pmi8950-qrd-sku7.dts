@@ -42,14 +42,14 @@
 	qcom,float-voltage-comp = <8>;
 	qcom,autoadjust-vfloat;
 	qcom,max-pulse-allowed = <10>;
-	qcom,fastchg-current-ma = <3000>;
+	qcom,fastchg-current-ma = <2400>;
 	qcom,fastchg-current-comp = <250>;
 	qcom,charging-timeout-mins = <192>;
 	qcom,precharging-timeout-mins = <24>;
 	qcom,force-aicl-rerun;
 	qcom,aicl-rerun-period-s = <45>;
 	qcom,rparasitic-uohm = <100000>;
-	qcom,thermal-mitigation = <3000 2200 1600 1000 0>;
+	qcom,thermal-mitigation = <2400 2000 1600 1000 0>;
 	status = "okay";
 };
 

@@ -457,19 +457,19 @@ module_param_named(
 	int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_default_hvdcp_icl_ma = 2000;
+static int smbchg_default_hvdcp_icl_ma = 1600;
 module_param_named(
 	default_hvdcp_icl_ma, smbchg_default_hvdcp_icl_ma,
 	int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_default_hvdcp3_icl_ma = 3000;
+static int smbchg_default_hvdcp3_icl_ma = 2700;
 module_param_named(
 	default_hvdcp3_icl_ma, smbchg_default_hvdcp3_icl_ma,
 	int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_default_dcp_icl_ma = 1800;
+static int smbchg_default_dcp_icl_ma = 2000;
 module_param_named(
 	default_dcp_icl_ma, smbchg_default_dcp_icl_ma,
 	int, S_IRUSR | S_IWUSR
@@ -4267,7 +4267,7 @@ static int smbchg_register_chg_led(struct smbchg_chip *chip)
 static int vf_adjust_low_threshold = 5;
 module_param(vf_adjust_low_threshold, int, 0644);
 
-static int vf_adjust_high_threshold = 7;
+static int vf_adjust_high_threshold = 12;
 module_param(vf_adjust_high_threshold, int, 0644);
 
 static int vf_adjust_n_samples = 10;
@@ -7480,7 +7480,7 @@ err:
 }
 
 #define DEFAULT_VLED_MAX_UV		3500000
-#define DEFAULT_FCC_MA			3000
+#define DEFAULT_FCC_MA			2400
 #define INDIA_DEFAULT_FCC_MA	2000
 static int smb_parse_dt(struct smbchg_chip *chip)
 {
