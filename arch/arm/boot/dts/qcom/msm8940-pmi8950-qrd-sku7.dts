@@ -49,7 +49,7 @@
 	qcom,force-aicl-rerun;
 	qcom,aicl-rerun-period-s = <45>;
 	qcom,rparasitic-uohm = <100000>;
-	qcom,thermal-mitigation = <2800 2200 1600 1000 0>;
+	qcom,thermal-mitigation = <3000 2200 1600 1000 0>;
 	status = "okay";
 };
 
