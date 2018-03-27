@@ -425,7 +425,9 @@
 	qcom,msm-thermal {
 		compatible = "qcom,msm-thermal";
 		qcom,sensor-id = <5>;
-		qcom,poll-ms = <100>;
+		qcom,poll-ms = <250>;
+		qcom,cpu-sensors = "tsens_tz_sensor5", "tsens_tz_sensor6",
+				"tsens_tz_sensor7", "tsens_tz_sensor8";
 		qcom,limit-temp = <60>;
 		qcom,temp-hysteresis = <10>;
 		qcom,freq-step = <2>;
@@ -435,7 +437,7 @@
 		qcom,hotplug-temp-hysteresis = <15>;
 		qcom,freq-mitigation-temp = <85>;
 		qcom,freq-mitigation-temp-hysteresis = <15>;
-		qcom,freq-mitigation-value = <652800>;
+		qcom,freq-mitigation-value = <1094400>;
 		qcom,online-hotplug-core;
 		qcom,synchronous-cluster-id = <0 1>;
 		qcom,synchronous-cluster-map = <1 4 &CPU0 &CPU1 &CPU2 &CPU3>,
@@ -446,15 +448,16 @@
 
 		qcom,vdd-dig-rstr {
 			qcom,vdd-rstr-reg = "vdd-dig";
-			qcom,levels = <RPM_SMD_REGULATOR_LEVEL_NOM_PLUS
-					RPM_SMD_REGULATOR_LEVEL_TURBO
+			qcom,levels = <RPM_SMD_REGULATOR_LEVEL_SVS_PLUS
+					RPM_SMD_REGULATOR_LEVEL_NOM
+					RPM_SMD_REGULATOR_LEVEL_NOM_PLUS
 					RPM_SMD_REGULATOR_LEVEL_TURBO>;
 			qcom,min-level = <RPM_SMD_REGULATOR_LEVEL_RETENTION>;
 		};
 
 		msm_thermal_freq: qcom,vdd-apps-rstr {
 			qcom,vdd-rstr-reg = "vdd-apps";
-			qcom,levels = <844800>;
+			qcom,levels = <249600 460800 8064000 902400>;
 			qcom,freq-req;
 		};
 	};
