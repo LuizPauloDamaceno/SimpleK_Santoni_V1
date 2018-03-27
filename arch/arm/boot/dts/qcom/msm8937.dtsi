@@ -425,9 +425,7 @@
 	qcom,msm-thermal {
 		compatible = "qcom,msm-thermal";
 		qcom,sensor-id = <5>;
-		qcom,poll-ms = <250>;
-		qcom,cpu-sensors = "tsens_tz_sensor5", "tsens_tz_sensor6",
-				"tsens_tz_sensor7", "tsens_tz_sensor8";
+		qcom,poll-ms = <100>;
 		qcom,limit-temp = <60>;
 		qcom,temp-hysteresis = <10>;
 		qcom,freq-step = <2>;
@@ -457,7 +455,7 @@
 
 		msm_thermal_freq: qcom,vdd-apps-rstr {
 			qcom,vdd-rstr-reg = "vdd-apps";
-			qcom,levels = <249600 460800 8064000 902400>;
+			qcom,levels = <249600 460800 806400 902400>;
 			qcom,freq-req;
 		};
 	};
@@ -473,7 +471,7 @@
 		qcom,ibat-monitor {
 			qcom,low-threshold-uamp = <750000>; //Minimum treshold.
 			qcom,high-threshold-uamp = <1000000>; //Maximum limit allowed to be drawed from battery.
-			qcom,mitigation-freq-khz = <1094400>;
+			qcom,mitigation-freq-khz = <1209600>;
 			qcom,vph-high-threshold-uv = <3700000>;
 			qcom,vph-low-threshold-uv = <3500000>;
 			qcom,soc-low-threshold = <5>;
