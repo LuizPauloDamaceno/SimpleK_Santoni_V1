@@ -14,4 +14,3 @@ obj-$(CONFIG_SYNC)			+= sync.o
 obj-$(CONFIG_SW_SYNC)			+= sw_sync.o
 obj-$(CONFIG_ONESHOT_SYNC)		+= oneshot_sync.o
 obj-$(CONFIG_ANDROID_VSOC)		+= vsoc.o
->>>>>>> 692acd7b4319... FROMLIST: staging: Android: Add 'vsoc' driver for cuttlefish.
