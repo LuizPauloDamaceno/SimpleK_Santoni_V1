@@ -455,7 +455,7 @@
 
 		msm_thermal_freq: qcom,vdd-apps-rstr {
 			qcom,vdd-rstr-reg = "vdd-apps";
-			qcom,levels = <249600 460800 806400 902400>;
+			qcom,levels = <902400>;
 			qcom,freq-req;
 		};
 	};
@@ -469,12 +469,12 @@
 		qcom,bcl-hotplug-list = <&CPU1 &CPU2 &CPU5 &CPU6>; //Disables 2 BIG and 2 LITTLE
 		qcom,bcl-soc-hotplug-list = <&CPU0 &CPU1 &CPU2 &CPU3>; //Disables All BIG cores
 		qcom,ibat-monitor {
-			qcom,low-threshold-uamp = <750000>; //Minimum treshold.
-			qcom,high-threshold-uamp = <1000000>; //Maximum limit allowed to be drawed from battery.
+			qcom,low-threshold-uamp = <1500000>; //Minimum treshold.
+			qcom,high-threshold-uamp = <2400000>; //Maximum limit allowed to be drawed from battery.
 			qcom,mitigation-freq-khz = <1209600>;
 			qcom,vph-high-threshold-uv = <3700000>;
 			qcom,vph-low-threshold-uv = <3500000>;
-			qcom,soc-low-threshold = <5>;
+			qcom,soc-low-threshold = <10>; //Minimum value to do a cycle
 			qcom,thermal-handle = <&msm_thermal_freq>;
 		};
 	};
