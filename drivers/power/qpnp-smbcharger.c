@@ -4549,8 +4549,8 @@ static int smbchg_change_usb_supply_type(struct smbchg_chip *chip,
 
 
 	if (version_flag) {
-		smbchg_default_hvdcp3_icl_ma = 1500;
-		smbchg_default_dcp_icl_ma = 1500;
+		smbchg_default_hvdcp3_icl_ma = 3000;
+		smbchg_default_dcp_icl_ma = 2000;
 	}
 
 	if (chip->typec_psy && (type != POWER_SUPPLY_TYPE_USB))
