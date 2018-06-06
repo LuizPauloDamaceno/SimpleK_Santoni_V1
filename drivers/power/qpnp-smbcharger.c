@@ -445,13 +445,13 @@ module_param_named(
 	parallel_en, smbchg_parallel_en, int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_main_chg_fcc_percent = 70;
+static int smbchg_main_chg_fcc_percent = 50;
 module_param_named(
 	main_chg_fcc_percent, smbchg_main_chg_fcc_percent,
 	int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_main_chg_icl_percent = 30;
+static int smbchg_main_chg_icl_percent = 60;
 module_param_named(
 	main_chg_icl_percent, smbchg_main_chg_icl_percent,
 	int, S_IRUSR | S_IWUSR
@@ -463,13 +463,13 @@ module_param_named(
 	int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_default_hvdcp3_icl_ma = 3000;
+static int smbchg_default_hvdcp3_icl_ma = 2300;
 module_param_named(
 	default_hvdcp3_icl_ma, smbchg_default_hvdcp3_icl_ma,
 	int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_default_dcp_icl_ma = 2000;
+static int smbchg_default_dcp_icl_ma = 2500;
 module_param_named(
 	default_dcp_icl_ma, smbchg_default_dcp_icl_ma,
 	int, S_IRUSR | S_IWUSR
@@ -2960,7 +2960,7 @@ out:
 	return rc;
 }
 
-static int smbchg_ibat_ocp_threshold_ua = 3000000;
+static int smbchg_ibat_ocp_threshold_ua = 4000000;
 module_param(smbchg_ibat_ocp_threshold_ua, int, 0644);
 
 #define UCONV			1000000LL
@@ -5331,8 +5331,8 @@ static int smbchg_prepare_for_pulsing(struct smbchg_chip *chip)
 	}
 
 	set_usb_psy_dp_dm(chip, POWER_SUPPLY_DP_DM_DP0P6_DM3P3);
-	/* Wait 60mS after entering continuous mode */
-	msleep(60);
+	/* Wait 100mS after entering continuous mode */
+	msleep(100);
 
 	return 0;
 out:
@@ -5752,14 +5752,14 @@ static int smbchg_dp_dm(struct smbchg_chip *chip, int val)
 		pr_smb(PR_MISC, "HVDCP3 supported\n");
 		break;
 	case POWER_SUPPLY_DP_DM_ICL_DOWN:
-		chip->usb_icl_delta -= 100;
+		chip->usb_icl_delta -= 200;
 		target_icl_vote_ma = get_client_vote(chip->usb_icl_votable,
 						PSY_ICL_VOTER);
 		vote(chip->usb_icl_votable, SW_AICL_ICL_VOTER, true,
 				target_icl_vote_ma + chip->usb_icl_delta);
 		break;
 	case POWER_SUPPLY_DP_DM_ICL_UP:
-		chip->usb_icl_delta += 100;
+		chip->usb_icl_delta += 200;
 		target_icl_vote_ma = get_client_vote(chip->usb_icl_votable,
 						PSY_ICL_VOTER);
 		vote(chip->usb_icl_votable, SW_AICL_ICL_VOTER, true,
@@ -7479,7 +7479,7 @@ err:
 	return rc;
 }
 
-#define DEFAULT_VLED_MAX_UV		3500000
+#define DEFAULT_VLED_MAX_UV		3700000
 #define DEFAULT_FCC_MA			2400
 #define INDIA_DEFAULT_FCC_MA	2000
 static int smb_parse_dt(struct smbchg_chip *chip)

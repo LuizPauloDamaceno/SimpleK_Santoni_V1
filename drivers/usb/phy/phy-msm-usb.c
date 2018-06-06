@@ -82,7 +82,7 @@
 
 #define SDP_CURRENT_UA 500000
 #define CDP_CURRENT_UA 1500000
-#define DCP_CURRENT_UA 2000000
+#define DCP_CURRENT_UA 2500000
 #define HVDCP_CURRENT_UA 1500000
 
 enum msm_otg_phy_reg_mode {
