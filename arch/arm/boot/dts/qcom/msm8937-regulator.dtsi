@@ -307,7 +307,8 @@
 		pm8937_s5: spm-regulator@2000 {
 			compatible = "qcom,spm-regulator";
 			reg = <0x2000 0x100>;
-			qcom,mode = "pwm";
+			qcom,mode = "auto"; //Draws less current, more smart for automatic applications.
+			qcom,boost-current-limit = <14>; //3200mA maximum
 			regulator-name = "pm8937_s5";
 			qcom,auto-mode-enable = <1>;
 			qcom,soft-start-enable = <1>;
@@ -374,8 +375,8 @@
 		regulator-max-microvolt = <11>;
 
 		qcom,cpr-fuse-corners = <3>;
-		qcom,cpr-voltage-ceiling = <1150000 1225000 1335000>;
-		qcom,cpr-voltage-floor =   <1100000 1150000 1285000>; //Optimized overvolting (up to +35mV from stock) 
+		qcom,cpr-voltage-ceiling = <1150000 1225000 1325000>;
+		qcom,cpr-voltage-floor =   <1100000 1150000 1275000>; //Optimized overvolting (up to +25mV from stock) 
 		vdd-apc-supply = <&pm8937_s5>;
 
 		mem-acc-supply = <&mem_acc_vreg_corner>;
@@ -397,7 +398,7 @@
 		qcom,cpr-fuse-row = <67 0>;
 		qcom,cpr-fuse-target-quot = <42 24 6>;
 		qcom,cpr-fuse-ro-sel = <60 57 54>;
-		qcom,cpr-init-voltage-ref = <1150000 1225000 1335000>;
+		qcom,cpr-init-voltage-ref = <1150000 1225000 1325000>;
 		qcom,cpr-fuse-init-voltage =
 					<67 36 6 0>,
 					<67 18 6 0>,
