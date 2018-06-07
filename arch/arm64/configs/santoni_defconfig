@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm64 3.18.102 Kernel Configuration
+# Linux/arm64 3.18.112 Kernel Configuration
 #
 CONFIG_ARM64=y
 CONFIG_64BIT=y
@@ -146,7 +146,7 @@ CONFIG_RT_GROUP_SCHED=y
 # CONFIG_BLK_CGROUP is not set
 CONFIG_SCHED_HMP=y
 CONFIG_SCHED_HMP_CSTATE_AWARE=y
-# CONFIG_SCHED_CORE_CTL is not set
+CONFIG_SCHED_CORE_CTL=y
 CONFIG_ASMP=y
 CONFIG_SCHED_QHMP=y
 # CONFIG_CHECKPOINT_RESTORE is not set
