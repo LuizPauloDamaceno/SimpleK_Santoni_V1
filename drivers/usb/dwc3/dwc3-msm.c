@@ -53,7 +53,7 @@
 #include "xhci.h"
 
 #define DWC3_IDEV_CHG_MAX 2500
-#define DWC3_HVDCP_CHG_MAX 1500
+#define DWC3_HVDCP_CHG_MAX 1600
 #define DWC3_WAKEUP_SRC_TIMEOUT 5000
 
 #define MICRO_5V    5000000

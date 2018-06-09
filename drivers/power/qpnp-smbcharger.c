@@ -457,7 +457,7 @@ module_param_named(
 	int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_default_hvdcp_icl_ma = 1500;
+static int smbchg_default_hvdcp_icl_ma = 1600;
 module_param_named(
 	default_hvdcp_icl_ma, smbchg_default_hvdcp_icl_ma,
 	int, S_IRUSR | S_IWUSR
@@ -7480,7 +7480,7 @@ err:
 }
 
 #define DEFAULT_VLED_MAX_UV		3700000
-#define DEFAULT_FCC_MA			2400
+#define DEFAULT_FCC_MA			2500
 #define INDIA_DEFAULT_FCC_MA	2000
 static int smb_parse_dt(struct smbchg_chip *chip)
 {

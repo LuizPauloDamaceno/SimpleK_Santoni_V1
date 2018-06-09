@@ -30,6 +30,7 @@
 		qcom,hpm-enable = <0x1>; //enable high power mode
 		qcom,boost-current-limit = <14>; //3200mA maximum
 		qcom,ocp-enable = <1>; //enables over current protection
+		qcom,init-quiet-mode = <2>; //Regulator EMI noise reduction
 		pm8937_s2_level: regulator-s2-level {
 			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm8937_s2_level";
@@ -103,6 +104,7 @@
 		qcom,hpm-enable = <0x1>; //enable high power mode
 		qcom,boost-current-limit = <14>; //3200mA maximum
 		qcom,ocp-enable = <1>; //enables over current protection
+		qcom,init-quiet-mode = <2>; //Regulator EMI noise reduction
 		pm8937_l3_level_ao: regulator-l3-level-ao {
 			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm8937_l3_level_ao";
@@ -307,12 +309,15 @@
 		pm8937_s5: spm-regulator@2000 {
 			compatible = "qcom,spm-regulator";
 			reg = <0x2000 0x100>;
-			qcom,mode = "auto"; //Draws less current, more smart for automatic applications.
+			qcom,mode = "pwm"; //More Robust
+			qcom,init-smps-mode = <2>; //Force PWM mode
 			qcom,boost-current-limit = <14>; //3200mA maximum
 			regulator-name = "pm8937_s5";
-			qcom,auto-mode-enable = <1>;
+			qcom,hpm-enable = <1>; //Enables High Power Mode
+			qcom,ocp-enable = <1>; //Safety
 			qcom,soft-start-enable = <1>;
 			qcom,vs-soft-start-strength = <2>;
+			qcom,init-quiet-mode = <2>; //Regulator EMI noise reduction
 			regulator-min-microvolt = <1000000>;
 			regulator-max-microvolt = <1350000>;
 		};
@@ -375,8 +380,8 @@
 		regulator-max-microvolt = <11>;
 
 		qcom,cpr-fuse-corners = <3>;
-		qcom,cpr-voltage-ceiling = <1150000 1225000 1325000>;
-		qcom,cpr-voltage-floor =   <1100000 1150000 1275000>; //Optimized overvolting (up to +25mV from stock) 
+		qcom,cpr-voltage-ceiling = <1125000 1200000 1325000>; 
+		qcom,cpr-voltage-floor =   <1050000 1125000 1275000>; //Optimized overvolting (up to +35mV from stock) 
 		vdd-apc-supply = <&pm8937_s5>;
 
 		mem-acc-supply = <&mem_acc_vreg_corner>;
@@ -398,7 +403,7 @@
 		qcom,cpr-fuse-row = <67 0>;
 		qcom,cpr-fuse-target-quot = <42 24 6>;
 		qcom,cpr-fuse-ro-sel = <60 57 54>;
-		qcom,cpr-init-voltage-ref = <1150000 1225000 1325000>;
+		qcom,cpr-init-voltage-ref = <1125000 1200000 1325000>;
 		qcom,cpr-fuse-init-voltage =
 					<67 36 6 0>,
 					<67 18 6 0>,
