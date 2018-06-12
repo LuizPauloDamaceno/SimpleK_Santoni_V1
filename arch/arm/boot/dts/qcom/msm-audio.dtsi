@@ -232,10 +232,10 @@
 			qcom,msm-dai-q6-dev-id = <240>;
 		};
 
-		/*afe_loopback_tx: qcom,msm-dai-q6-afe-loopback-tx {
+		afe_loopback_tx: qcom,msm-dai-q6-afe-loopback-tx {
 			compatible = "qcom,msm-dai-q6-dev";
 			qcom,msm-dai-q6-dev-id = <24577>;
-		};*/
+		};
 
 		incall_record_rx: qcom,msm-dai-q6-incall-record-rx {
 			compatible = "qcom,msm-dai-q6-dev";
@@ -503,7 +503,7 @@
 
 		qcom,msm-mbhc-hphl-swh = <0>;
 		qcom,msm-mbhc-gnd-swh = <0>;
-		qcom,tasha-mclk-clk-freq = <9600000>;
+		qcom,tasha-mclk-clk-freq = <12288000>;
 		asoc-platform = <&pcm0>, <&pcm1>, <&pcm2>, <&voip>, <&voice>,
 				<&loopback>, <&compress>, <&hostless>,
 				<&afe>, <&lsm>, <&routing>, <&cpe>, <&lpa>;
@@ -755,9 +755,9 @@
 		qcom,cdc-micbias3-mv = <1800>;
 		qcom,cdc-micbias4-mv = <1800>;
 
-		qcom,cdc-mclk-clk-rate = <9600000>;
+		qcom,cdc-mclk-clk-rate = <12288000>;
 		qcom,cdc-slim-ifd = "tasha-slim-ifd";
 		qcom,cdc-slim-ifd-elemental-addr = [00 00 A0 01 17 02];
-		qcom,cdc-dmic-sample-rate = <2400000>;
+		qcom,cdc-dmic-sample-rate = <4800000>;
 	};
 };

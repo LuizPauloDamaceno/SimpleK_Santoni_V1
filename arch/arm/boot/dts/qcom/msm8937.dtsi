@@ -1168,7 +1168,7 @@
 		qcom,boost-sysclk-with-streaming;
 		qcom,axi-prefetch-enable;
 		qcom,enable-sdp-typec-current-limit;
-		qcom,hsusb-otg-power-budget = <2000>;
+		qcom,hsusb-otg-power-budget = <2200>;
 		qcom,hsusb-otg-delay-lpm;
 
 		qcom,msm-bus,name = "usb2";
@@ -1561,7 +1561,7 @@
 		qcom,use-sw-ahash-algo;
 		qcom,use-sw-hmac-algo;
 		qcom,use-sw-aead-algo;
-		qcom,ce-opp-freq = <100000000>;
+		qcom,ce-opp-freq = <160000000>;
 	};
 
 	qcom_cedev: qcedev@720000 {
@@ -1586,7 +1586,7 @@
 			 <&clock_gcc clk_gcc_crypto_axi_clk>;
 		clock-names = "core_clk_src", "core_clk",
 				"iface_clk", "bus_clk";
-		qcom,ce-opp-freq = <100000000>;
+		qcom,ce-opp-freq = <160000000>;
 	};
 
 	qcom_seecom: qseecom@84A00000 {
@@ -1614,7 +1614,7 @@
 			 <&clock_gcc clk_gcc_crypto_axi_clk>;
 		clock-names = "core_clk_src", "core_clk",
 				"iface_clk", "bus_clk";
-		qcom,ce-opp-freq = <100000000>;
+		qcom,ce-opp-freq = <160000000>;
 	};
 
 	qcom,ipc_router {
@@ -2013,7 +2013,7 @@
 			 <&clock_gcc clk_gcc_crypto_axi_clk>;
 		clock-names = "core_clk_src", "core_clk",
 				"iface_clk", "bus_clk";
-		qcom,ce-opp-freq = <100000000>;
+		qcom,ce-opp-freq = <160000000>;
 	};
 
 	qcom,msm-ssc-sensors {

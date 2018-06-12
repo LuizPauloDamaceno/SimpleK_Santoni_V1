@@ -48,7 +48,7 @@
 	qcom,fastchg-current-comp = <250>;
 	qcom,rparasitic-uohm = <100000>;
 	qcom,resume-delta-mv = <50>;
-	qcom,thermal-mitigation = <2500 2000 1500 0>;
+	qcom,thermal-mitigation = <2100 1800 1200>;
 	qcom,pmic-revid = <&pmi8950_revid>;
 	qcom,force-aicl-rerun;
 	qcom,aicl-rerun-period-s = <180>;

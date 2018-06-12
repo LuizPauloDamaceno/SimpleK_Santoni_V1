@@ -1020,7 +1020,7 @@
 
 		vdd-supply = <&pm8937_l11>;
 		qcom,vdd-voltage-level = <2950000 2950000>;
-		qcom,vdd-current-level = <15000 400000>;
+		qcom,vdd-current-level = <15000 420000>;
 
 		vdd-io-supply = <&pm8937_l12>;
 		qcom,vdd-io-voltage-level = <2950000 2950000>;
