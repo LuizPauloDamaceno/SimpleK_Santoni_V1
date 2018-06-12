@@ -79,6 +79,7 @@
 	rpm-regulator-smpa4 {
 		status = "okay";
 		pm8937_s4: regulator-s4 {
+			qcom,init-quiet-mode = <2>; //Regulator EMI noise reduction
 			regulator-min-microvolt = <2050000>;
 			regulator-max-microvolt = <2050000>;
 			qcom,init-voltage = <2050000>;
