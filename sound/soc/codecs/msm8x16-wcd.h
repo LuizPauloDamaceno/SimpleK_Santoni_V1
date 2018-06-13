@@ -73,14 +73,14 @@ enum codec_versions {
 
 /* Support different hph modes */
 enum {
-	NORMAL_MODE = 0,
-	HD2_MODE,
+	HD2_MODE = 0,
+	NORMAL_MODE,	
 };
 
 /* Codec supports 1 compander */
 enum {
-	COMPANDER_NONE = 0,
-	COMPANDER_1, /* HPHL/R */
+	COMPANDER_1 = 0, /* HPHL/R */
+	COMPANDER_NONE,
 	COMPANDER_MAX,
 };
 
@@ -93,10 +93,10 @@ enum wcd_curr_ref {
 };
 
 enum wcd_mbhc_imp_det_pin {
-	WCD_MBHC_DET_NONE = 0,
+	WCD_MBHC_DET_BOTH = 0,
 	WCD_MBHC_DET_HPHL,
 	WCD_MBHC_DET_HPHR,
-	WCD_MBHC_DET_BOTH,
+	WCD_MBHC_DET_NONE,
 };
 
 
