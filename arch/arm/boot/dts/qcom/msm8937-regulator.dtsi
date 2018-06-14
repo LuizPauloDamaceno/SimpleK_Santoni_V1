@@ -381,8 +381,8 @@
 		regulator-max-microvolt = <11>;
 
 		qcom,cpr-fuse-corners = <3>;
-		qcom,cpr-voltage-ceiling = <1125000 1200000 1325000>; 
-		qcom,cpr-voltage-floor =   <1050000 1125000 1285000>; //Optimized overvolting (up to +35mV from stock) 
+		qcom,cpr-voltage-ceiling = <1100000 1175000 1275000>; 
+		qcom,cpr-voltage-floor =   <1050000 1125000 1225000>; //Undervolt, OV is a lie, maybe this helps in powersaving.
 		vdd-apc-supply = <&pm8937_s5>;
 
 		mem-acc-supply = <&mem_acc_vreg_corner>;
@@ -404,7 +404,7 @@
 		qcom,cpr-fuse-row = <67 0>;
 		qcom,cpr-fuse-target-quot = <42 24 6>;
 		qcom,cpr-fuse-ro-sel = <60 57 54>;
-		qcom,cpr-init-voltage-ref = <1125000 1200000 1325000>;
+		qcom,cpr-init-voltage-ref = <1100000 1175000 1275000>;
 		qcom,cpr-fuse-init-voltage =
 					<67 36 6 0>,
 					<67 18 6 0>,
