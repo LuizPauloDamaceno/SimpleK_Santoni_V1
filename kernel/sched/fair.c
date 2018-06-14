@@ -4781,9 +4781,8 @@ static void check_spread(struct cfs_rq *cfs_rq, struct sched_entity *se)
 		schedstat_inc(cfs_rq, nr_spread_over);
 #endif
 }
-unsigned int Lgentle_fair_sleepers = 1;
-unsigned int Larch_power = 0;
-
+static unsigned int Lgentle_fair_sleepers = 1;
+static unsigned int Larch_power = 0;
 void relay_gfs(unsigned int gfs)
 {
 	Lgentle_fair_sleepers = gfs;
