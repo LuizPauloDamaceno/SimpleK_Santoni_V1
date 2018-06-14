@@ -42,18 +42,17 @@
 	qcom,chg-inhibit-fg;
 	qcom,float-voltage-mv = <4450>;
 	qcom,autoadjust-vfloat;
-	qcom,max-pulse-allowed = <12>;
 	qcom,jeita-temp-hard-limit = <1>;
 	qcom,use-parallel-aicl;
 	qcom,fastchg-current-comp = <250>;
 	qcom,rparasitic-uohm = <100000>;
 	qcom,resume-delta-mv = <50>;
-	qcom,thermal-mitigation = <2100 1800 1200>;
+	qcom,thermal-mitigation = <2100 1800 1200 750 0>;
 	qcom,pmic-revid = <&pmi8950_revid>;
 	qcom,force-aicl-rerun;
 	qcom,aicl-rerun-period-s = <180>;
 	status = "okay";
-	qcom,vchg_sns-vadc = <0xf8>;
+	qcom,vchg_sns-vadc = <&pmi8950_vadc>;
 	qcom,vchg-adc-channel-id = <0x3>;
 
 			qcom,chgr@1000 {
@@ -158,13 +157,13 @@
 	qcom,hot-bat-decidegc = <520>;
 	qcom,warm-bat-decidegc = <500>;
 	qcom,warm-bat-india-decidegc = <520>;
-	qcom,fg-iterm-ma = <0xb4>;
-	qcom,fg-chg-iterm-ma = <0x82>;
-	qcom,resume-soc-raw = <0xfd>;	
-	qcom,cl-max-increment-deciperc = <0x1>;
-	qcom,cl-max-decrement-deciperc = <0x1>;
-	qcom,fg-delta-soc = <0x1>;
-	qcom,fg-cc-cv-threshold-mv = <4350>;
+	qcom,fg-iterm-ma = <180>;
+	qcom,fg-chg-iterm-ma = <130>;
+	qcom,resume-soc = <99>;
+	qcom,resume-soc-raw = <253>;
+	qcom,vbat-estimate-diff-mv = <100>;
+	qcom,fg-cutoff-voltage-mv = <3400>;
+	qcom,fg-cc-cv-threshold-mv = <4390>;
 	qcom,bad-battery-detection-enable;
 	qcom,capacity-estimation-on;
 	qcom,esr-pulse-tuning-en;
@@ -172,6 +171,11 @@
 	qcom,cycle-counter-en;
 	qcom,capacity-learning-on;
 	qcom,capacity-learning-feedback;
+	qcom,cl-max-increment-deciperc = <1>;
+	qcom,cl-max-decrement-deciperc = <1>;
+	qcom,fg-delta-soc = <1>;
+	qcom,bad-battery-detection-enable;
+	qcom,hold-soc-while-full;
 	qcom,pmic-revid = <&pmi8950_revid>;
 	qcom,thermal-coefficients = [b7 85 b2 49 71 35];
 	
